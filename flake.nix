@@ -17,6 +17,25 @@
         system:
         let
           pkgs = import nixpkgs { inherit system; };
+          neovimPackage = pkgs.symlinkJoin {
+            name = "neovim-config";
+            paths = [ pkgs.neovim ];
+            buildInputs = [ pkgs.makeWrapper ];
+            postBuild = ''
+              wrapProgram "$out/bin/nvim" \
+                --prefix PATH : ${pkgs.lib.makeBinPath (with pkgs; [
+                  ripgrep
+                  fd
+                  git
+                  wl-clipboard
+                  lua-language-server
+                  stylua
+                  nixd
+                  nixfmt-rfc-style
+                ])} \
+                --add-flags "-u ${self}/src/init.lua"
+            '';
+          };
           neovimTools = pkgs.buildEnv {
             name = "neovim-tools";
             paths = with pkgs; [
@@ -32,8 +51,9 @@
           };
         in
         {
+          neovim = neovimPackage;
           neovim-tools = neovimTools;
-          default = neovimTools;
+          default = neovimPackage;
         }
       );
 
