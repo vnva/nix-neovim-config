@@ -8,5 +8,6 @@ vim.opt.runtimepath:prepend(config_dir)
 package.path = config_dir .. '/lua/?.lua;' .. config_dir .. '/lua/?/init.lua;' .. package.path
 
 require('core.options')
+require('core.ui')
 require('core.keymaps')
 require('core.lazy')

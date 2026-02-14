@@ -7,7 +7,6 @@
 - `src/init.lua`: Neovim entrypoint.
 - `src/lua/core/`: core runtime config (`options.lua`, `keymaps.lua`, `lazy.lua`, `plugins.lua`).
 - `src/lua/plugins/`: plugin specs/config (`lsp.lua`, `format.lua`, `cmp.lua`, `telescope.lua`, `treesitter.lua`, `ui.lua`).
-- `modules/`: NixOS/Home Manager module files are present but currently not exported by `flake.nix`.
 
 ## Build, Test, and Development Commands
 - `just build`: build tool dependencies (`.#neovim-tools`).

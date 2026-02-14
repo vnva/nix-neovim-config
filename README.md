@@ -122,8 +122,7 @@ This does not require enabling any module from this repo.
 
 ## Notes
 
-- This flake currently exports packages only.
-- `modules/nixos.nix` and `modules/home-manager.nix` exist in the repo, but are not exported in `flake.nix` outputs.
+- This flake exports packages only.
 - First startup requires network access to bootstrap `lazy.nvim` and plugins.
 
 ## Troubleshooting
