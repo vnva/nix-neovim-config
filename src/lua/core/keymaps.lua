@@ -1,0 +1,14 @@
+local keymap = vim.keymap.set
+
+keymap('n', '<leader>w', '<cmd>w<cr>', { desc = 'Save file' })
+keymap('n', '<leader>q', '<cmd>q<cr>', { desc = 'Quit' })
+keymap('n', '<leader>ff', function()
+  require('telescope.builtin').find_files()
+end, { desc = 'Find files' })
+keymap('n', '<leader>fg', function()
+  require('telescope.builtin').live_grep()
+end, { desc = 'Live grep' })
+keymap('n', '<leader>h', '<C-w>h', { desc = 'Go to left window' })
+keymap('n', '<leader>j', '<C-w>j', { desc = 'Go to lower window' })
+keymap('n', '<leader>k', '<C-w>k', { desc = 'Go to upper window' })
+keymap('n', '<leader>l', '<C-w>l', { desc = 'Go to right window' })
