@@ -17,42 +17,29 @@
         system:
         let
           pkgs = import nixpkgs { inherit system; };
+          neovimToolPackages = with pkgs; [
+            ripgrep
+            fd
+            git
+            wl-clipboard
+            lua-language-server
+            stylua
+            nixd
+            nixfmt
+          ];
           neovimPackage = pkgs.symlinkJoin {
             name = "neovim-config";
             paths = [ pkgs.neovim ];
             buildInputs = [ pkgs.makeWrapper ];
             postBuild = ''
               wrapProgram "$out/bin/nvim" \
-                --prefix PATH : ${
-                  pkgs.lib.makeBinPath (
-                    with pkgs;
-                    [
-                      ripgrep
-                      fd
-                      git
-                      wl-clipboard
-                      lua-language-server
-                      stylua
-                      nixd
-                      nixfmt
-                    ]
-                  )
-                } \
+                --prefix PATH : ${pkgs.lib.makeBinPath neovimToolPackages} \
                 --add-flags "-u ${self}/src/init.lua"
             '';
           };
           neovimTools = pkgs.buildEnv {
             name = "neovim-tools";
-            paths = with pkgs; [
-              ripgrep
-              fd
-              git
-              wl-clipboard
-              lua-language-server
-              stylua
-              nixd
-              nixfmt
-            ];
+            paths = neovimToolPackages;
           };
         in
         {
@@ -61,8 +48,5 @@
           default = neovimPackage;
         }
       );
-
-      nixosModules.default = import ./modules/nixos.nix;
-      homeManagerModules.default = import ./modules/home-manager.nix;
     };
 }
