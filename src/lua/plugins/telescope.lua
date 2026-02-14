@@ -5,6 +5,7 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-file-browser.nvim',
+      'nvim-telescope/telescope-frecency.nvim',
     },
     opts = {
       defaults = {
@@ -57,12 +58,18 @@ return {
           hijack_netrw = true,
           respect_gitignore = false,
         },
+        frecency = {
+          show_scores = true,
+          show_unindexed = true,
+          ignore_patterns = { '*.git/*', '*/tmp/*' },
+        },
       },
     },
     config = function(_, opts)
       local telescope = require('telescope')
       telescope.setup(opts)
       telescope.load_extension('file_browser')
+      telescope.load_extension('frecency')
     end,
   },
 }
