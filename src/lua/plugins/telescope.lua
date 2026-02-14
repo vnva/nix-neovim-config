@@ -4,6 +4,7 @@ return {
     cmd = 'Telescope',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-file-browser.nvim',
     },
     opts = {
       defaults = {
@@ -49,9 +50,19 @@ return {
           },
         },
       },
+      extensions = {
+        file_browser = {
+          hidden = true,
+          grouped = true,
+          hijack_netrw = true,
+          respect_gitignore = false,
+        },
+      },
     },
     config = function(_, opts)
-      require('telescope').setup(opts)
+      local telescope = require('telescope')
+      telescope.setup(opts)
+      telescope.load_extension('file_browser')
     end,
   },
 }

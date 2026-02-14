@@ -8,6 +8,12 @@ end, { desc = 'Find files' })
 keymap('n', '<leader>fg', function()
   require('telescope.builtin').live_grep()
 end, { desc = 'Live grep' })
+keymap('n', '<leader>fe', function()
+  require('telescope').extensions.file_browser.file_browser({
+    path = vim.fn.expand('%:p:h'),
+    select_buffer = true,
+  })
+end, { desc = 'File explorer' })
 keymap('n', '<leader>fd', function()
   require('telescope.builtin').diagnostics()
 end, { desc = 'Diagnostics' })
