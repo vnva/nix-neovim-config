@@ -83,8 +83,33 @@ return {
         })
       end
 
+      local function setup_qmlls()
+        if vim.fn.executable('qmlls') ~= 1 then
+          vim.schedule(function()
+            vim.notify('qmlls is not in PATH. Add it to Neovim package dependencies.', vim.log.levels.WARN)
+          end)
+          return
+        end
+
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = { 'qml', 'qmljs' },
+          callback = function(args)
+            if #vim.lsp.get_clients({ bufnr = args.buf, name = 'qmlls' }) > 0 then
+              return
+            end
+            vim.lsp.start({
+              name = 'qmlls',
+              cmd = { 'qmlls' },
+              capabilities = capabilities,
+              root_dir = vim.fs.root(args.buf, { 'qmldir', '.git' }) or vim.loop.cwd(),
+            })
+          end,
+        })
+      end
+
       setup_lua_ls()
       setup_nixd()
+      setup_qmlls()
     end,
   },
 }

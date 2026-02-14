@@ -10,6 +10,8 @@ return {
       end
 
       ts.setup({})
+      ts.install({ 'qmljs' })
+      vim.treesitter.language.register('qmljs', 'qml')
 
       vim.api.nvim_create_autocmd('FileType', {
         callback = function(args)

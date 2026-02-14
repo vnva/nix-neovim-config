@@ -23,6 +23,7 @@
             git
             wl-clipboard
             lua-language-server
+            qt6.qtdeclarative
             stylua
             nixd
             nixfmt

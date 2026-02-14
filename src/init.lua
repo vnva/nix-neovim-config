@@ -10,4 +10,5 @@ package.path = config_dir .. '/lua/?.lua;' .. config_dir .. '/lua/?/init.lua;' .
 require('core.options')
 require('core.ui')
 require('core.keymaps')
+require('core.startup')
 require('core.lazy')
