@@ -50,8 +50,7 @@ stylua.toml
 - Search/navigation
   - Telescope file finder and live grep
 - UI
-  - `lualine`, `noice`, `notify`
-  - transparent main background with non-transparent popup windows
+  - transparent editor background with readable popup menus
 - Treesitter
   - configured with `nvim-treesitter`
 

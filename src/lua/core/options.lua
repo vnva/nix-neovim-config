@@ -1,16 +1,18 @@
 local opt = vim.opt
 
 opt.number = true
-opt.relativenumber = true
-opt.mouse = ""
+opt.relativenumber = false
+opt.mouse = ''
 opt.ignorecase = true
 opt.smartcase = true
 opt.termguicolors = true
 opt.cmdheight = 0
 opt.completeopt = { 'menu', 'menuone', 'noselect' }
+opt.showmode = false
+opt.showcmd = false
 opt.updatetime = 250
-opt.signcolumn = "yes"
-opt.clipboard = "unnamedplus"
+opt.signcolumn = 'yes'
+opt.clipboard = 'unnamedplus'
 opt.splitright = true
 opt.splitbelow = true
 opt.expandtab = true
