@@ -19,7 +19,7 @@ in
         lua-language-server
         stylua
         nixd
-        nixfmt-rfc-style
+        nixfmt
       ];
     };
 

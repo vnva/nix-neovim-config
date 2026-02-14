@@ -31,7 +31,7 @@
                   lua-language-server
                   stylua
                   nixd
-                  nixfmt-rfc-style
+                  nixfmt
                 ])} \
                 --add-flags "-u ${self}/src/init.lua"
             '';
@@ -46,7 +46,7 @@
               lua-language-server
               stylua
               nixd
-              nixfmt-rfc-style
+              nixfmt
             ];
           };
         in
