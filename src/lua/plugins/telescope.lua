@@ -8,6 +8,7 @@ return {
     opts = {
       defaults = {
         sorting_strategy = 'ascending',
+        wrap_results = true,
         file_ignore_patterns = {
           '^.git/',
         },
@@ -28,6 +29,14 @@ return {
         },
       },
       pickers = {
+        diagnostics = {
+          layout_strategy = 'vertical',
+          layout_config = {
+            width = 0.95,
+            height = 0.95,
+            preview_cutoff = 1,
+          },
+        },
         find_files = {
           hidden = true,
           find_command = {
