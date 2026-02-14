@@ -23,16 +23,21 @@
             buildInputs = [ pkgs.makeWrapper ];
             postBuild = ''
               wrapProgram "$out/bin/nvim" \
-                --prefix PATH : ${pkgs.lib.makeBinPath (with pkgs; [
-                  ripgrep
-                  fd
-                  git
-                  wl-clipboard
-                  lua-language-server
-                  stylua
-                  nixd
-                  nixfmt
-                ])} \
+                --prefix PATH : ${
+                  pkgs.lib.makeBinPath (
+                    with pkgs;
+                    [
+                      ripgrep
+                      fd
+                      git
+                      wl-clipboard
+                      lua-language-server
+                      stylua
+                      nixd
+                      nixfmt
+                    ]
+                  )
+                } \
                 --add-flags "-u ${self}/src/init.lua"
             '';
           };
