@@ -9,13 +9,6 @@ if argc == 1 then
       once = true,
       callback = function()
         vim.cmd.cd(vim.fn.fnameescape(project_dir))
-
-        local ok, telescope = pcall(require, 'telescope.builtin')
-        if ok then
-          telescope.find_files({ cwd = project_dir })
-        else
-          vim.cmd.edit('.')
-        end
       end,
     })
   end
