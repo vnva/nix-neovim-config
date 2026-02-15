@@ -47,6 +47,7 @@ stylua.toml
   - Nix: `nixfmt`
 - Completion
   - `nvim-cmp` + LSP + snippets
+  - `supermaven-nvim` inline AI suggestions
 - Search/navigation
   - Telescope file finder and live grep
 - UI
@@ -77,6 +78,9 @@ Completion mappings:
 - `<C-Space>` trigger completion
 - `<CR>` confirm selected item
 - `<Tab>` / `<S-Tab>` navigate completion/snippets
+- `<C-l>` accept Supermaven suggestion
+- `<C-j>` accept next Supermaven word
+- `<C-]>` clear Supermaven suggestion
 
 ## Local usage
 
