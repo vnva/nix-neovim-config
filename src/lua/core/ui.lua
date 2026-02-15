@@ -31,9 +31,43 @@ function _G.statusline_mode()
   return mode_names[vim.api.nvim_get_mode().mode] or '?'
 end
 
+function _G.statusline_git()
+  local head = vim.b.gitsigns_head
+  if not head or head == '' then
+    return ''
+  end
+  return head
+end
+
+function _G.statusline_git_changes()
+  local status = vim.b.gitsigns_status_dict
+  if not status then
+    return ''
+  end
+
+  local parts = {}
+  if status.added and status.added > 0 then
+    table.insert(parts, '+' .. status.added)
+  end
+  if status.changed and status.changed > 0 then
+    table.insert(parts, '~' .. status.changed)
+  end
+  if status.removed and status.removed > 0 then
+    table.insert(parts, '-' .. status.removed)
+  end
+
+  return table.concat(parts, ' ')
+end
+
 vim.opt.laststatus = 3
-vim.opt.statusline =
-  " %{%v:lua.statusline_mode()%} │ %<%f %h%m%r %= %{&filetype != '' ? &filetype : 'text'} │ %l:%c │ %p%% "
+vim.opt.statusline = table.concat({
+  ' %{%v:lua.statusline_mode()%}',
+  " %{v:lua.statusline_git() != '' ? '│ git:' . v:lua.statusline_git() . ' ' : ''}",
+  " %{v:lua.statusline_git_changes() != '' ? v:lua.statusline_git_changes() . ' ' : ''}",
+  '│ %<%f %h%m%r',
+  " %= %{&filetype != '' ? &filetype : 'text'}",
+  ' │ %l:%c │ %p%% ',
+})
 
 apply_ui_highlights()
 
