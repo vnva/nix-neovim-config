@@ -6,6 +6,7 @@ return {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope-file-browser.nvim',
       'nvim-telescope/telescope-frecency.nvim',
+      'nvim-telescope/telescope-media-files.nvim',
     },
     opts = {
       defaults = {
@@ -63,6 +64,10 @@ return {
           show_unindexed = true,
           ignore_patterns = { '*.git/*', '*/tmp/*' },
         },
+        media_files = {
+          filetypes = { 'png', 'webp', 'jpg', 'jpeg', 'mp4', 'webm', 'pdf' },
+          find_cmd = 'rg',
+        },
       },
     },
     config = function(_, opts)
@@ -70,6 +75,7 @@ return {
       telescope.setup(opts)
       telescope.load_extension('file_browser')
       telescope.load_extension('frecency')
+      telescope.load_extension('media_files')
     end,
   },
 }
