@@ -22,6 +22,7 @@
             fd
             git
             wl-clipboard
+            curl
             lua-language-server
             qt6.qtdeclarative
             stylua
