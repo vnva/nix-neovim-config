@@ -27,6 +27,7 @@
             stylua
             nixd
             nixfmt
+            nodePackages.prettier
           ];
           neovimPackage = pkgs.symlinkJoin {
             name = "neovim-config";

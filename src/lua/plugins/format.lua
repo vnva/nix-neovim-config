@@ -14,6 +14,7 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         nix = { 'nixfmt' },
+        json = { 'prettier' },
         qml = { 'qmlformat' },
         qmljs = { 'qmlformat' },
       },
@@ -26,6 +27,12 @@ return {
           }
         end
         if ft == 'nix' and vim.fn.executable('nixfmt') == 1 then
+          return {
+            timeout_ms = 2000,
+            lsp_fallback = true,
+          }
+        end
+        if ft == 'json' and vim.fn.executable('prettier') == 1 then
           return {
             timeout_ms = 2000,
             lsp_fallback = true,
