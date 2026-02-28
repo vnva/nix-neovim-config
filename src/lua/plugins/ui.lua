@@ -28,4 +28,28 @@ return {
       current_line_blame = false,
     },
   },
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    main = 'ibl',
+    opts = {
+      indent = {
+        char = '│',
+      },
+      scope = {
+        enabled = true,
+      },
+      exclude = {
+        filetypes = {
+          'help',
+          'dashboard',
+          'lazy',
+          'mason',
+          'NvimTree',
+          'terminal',
+          'toggleterm',
+        },
+      },
+    },
+  },
 }
